@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    font-family: 'Bitter', serif;
+}
+.first-two-forms {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+.initial-form .party-members-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.party-members-form {
+    display: flex;
+    flex-direction: column;
+}
+.party-members-input {
+    display: flex;
+    flex-direction: column;
+}
+.items {
+    list-style-type: none;
+    margin-top: 10px;
+}
+.item-entry {
+    margin-top: 30px;
+}
+.item-entry-name {
+    margin-right: 10px;
+    font-size: 25px;
+}
+.item-entry-details {
+    font-style: italic;
+}
+
+.totals {
+    margin-top: 4%;
+}

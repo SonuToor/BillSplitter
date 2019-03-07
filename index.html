@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bill Splitter</title>
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./billsplitter.css">
+</head>
+<body>
+    <h1>Split your bill with ease!</h1>
+    <div class="inputs">
+        <div class="first-two-forms">
+            <form class="initial-form">
+                <label for="party-size">How many people are you?</label>
+                <div class="form-group">
+                    <input type="number" id="party-size" min="2" max="10" required placeholder="2">
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </div>
+            </form>
+            <form class="party-members-form">
+                <label>Enter names of the party members below.</label>
+                <div class="party-members-input form-group">
+                    <input type="text" placeholder="Enter name." class="party-member-input" required>
+                </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
+        <form class = "item-input-form container">
+            <div class="form-group">
+                <input type="text" id="item" min="3" required placeholder="Enter the item name" required>
+                <input type="number" id="price" min="1" placeholder="Price" required step="0.01">
+                <input type="number" id="quantity" min="1" placeholder="Quantity" required>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="item-display container">
+        <h3>Your items!</h3>
+        <h5>Check off which members of the party shared in each item.</h5>
+        <ul class = "items"></ul>
+        <button type="button" class="btn btn-dark" id="calculate-totals">Split the bill!</button>
+    </div>
+    <div class="totals container">
+        <h3>Each party members total</h3>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Party Member</th>
+                    <th scope="col">Total Owed</th>
+                </tr>
+            </thead>
+            <tbody class="member-entries">
+            </tbody>
+        </table>
+    </div>
+    <script src="./billsplitter.js"></script>
+</body>
+</html>
