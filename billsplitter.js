@@ -1,5 +1,6 @@
 const partyForm= document.querySelector('.initial-form');
 const partySizeInput = document.getElementById("party-size");
+const tipPercentage = document.getElementById("tip");
 
 let partyList = []; 
 let itemsArray = [];
@@ -23,7 +24,7 @@ partyForm.addEventListener("submit", partySetup);
 partyMembersForm.addEventListener("submit", populatePartyList);
 itemsForm.addEventListener("submit", populateItemsList); 
 billSplitButton.addEventListener("click", splitBill);
-
+tipPercentage.addEventListener("change", calculateTip);
 
 // create inputs for the user to provide the party members names based on the party size provided 
 function partySetup(e) {
@@ -72,7 +73,7 @@ function createTotalTableRows(list) {
     list.forEach(member => {
         let newRow = document.createElement("tr")
 
-        newRow.classList.add(`${member}`)
+        newRow.classList.add(`${member.replace(/ +/g, "").trim()}`)
 
         newRow.innerHTML = `<td>${member}</td> <td class="total-owed">$0.00</td>`
 
@@ -98,7 +99,6 @@ function populateItemsList(e) {
 
     const item = document.createElement("li");
 
-    item.classList.add(`${itemName.value.trim()}`);
     item.classList.add("item-entry")
     
     let checkboxes = memberCheckboxCreator(partyList);
@@ -178,7 +178,7 @@ function splitBill() {
                     return
                 }
 
-                let memberRow = document.querySelector(`.${member}`);
+                let memberRow = document.querySelector(`.${member.replace(/ +/g, "").trim()}`);
 
                 let totalField = memberRow.querySelector(".total-owed"); 
 
@@ -190,4 +190,12 @@ function splitBill() {
             });
         })
     }
+}
+
+function calculateTip() {
+    let tip = Number(tipPercentage.value)/100;
+
+    // iterate over total-owed for each person
+        // get the totalCurrentlyOwing
+        // Number(totalCurrentlyOwing) * (1 + tip)
 }
