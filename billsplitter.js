@@ -5,6 +5,8 @@ const tipPercentage = document.getElementById("tip");
 let partyList = []; 
 let itemsArray = [];
 
+let splitTotals = []; 
+
 const partyMemberNamesInput = document.querySelector(".party-members-input");
 const partyMembersForm = document.querySelector(".party-members-form");
 
@@ -33,6 +35,9 @@ function partySetup(e) {
 
     const partySize = Number(partySizeInput.value);
 
+    document.querySelector(".party-member-input").removeAttribute("disabled"); 
+    document.querySelector(".party-member-button").removeAttribute("disabled"); 
+
     for (let i = 0; i < (partySize - 1) ; i++) {
 
         const input = document.createElement("input");
@@ -45,6 +50,7 @@ function partySetup(e) {
     partySizeInput.value = ""; 
     
     partySizeInput.setAttribute("disabled", true);
+
 }
 
 
@@ -189,13 +195,34 @@ function splitBill() {
                 totalField.innerText = `$${totalCurrentlyOwing.toFixed(2)}`;
             });
         })
+        let totalsDisplayed = document.querySelectorAll(".total-owed");
+        totalsDisplayed.forEach(total => {
+            splitTotals.push(Number(total.innerText.slice(1)))
+        })
+
     }
 }
 
+// allow user to set a tip percentage for each party member 
 function calculateTip() {
-    let tip = Number(tipPercentage.value)/100;
 
-    // iterate over total-owed for each person
-        // get the totalCurrentlyOwing
-        // Number(totalCurrentlyOwing) * (1 + tip)
+    if (billSplitButton.hasAttribute("disabled") == false) {
+        console.log("Nothing to add a tip to!")
+        return
+    }
+    else {
+
+        let tip = Number(tipPercentage.value)/100;
+
+        let totalsDisplayed = document.querySelectorAll(".total-owed");
+            
+        totalsDisplayed.forEach(
+            
+            function(total, index) {
+
+                let amount = (splitTotals[index] * (1 + tip));
+                
+                total.innerText = `$${amount.toFixed(2)}`
+        })
+    }
 }
